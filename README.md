@@ -256,10 +256,9 @@ Aspiring Data Engineer
 https://github.com/PatienceRamaboe
 
 **LinkedIn**  
-_Add your LinkedIn profile URL_
+Patience Ramaboe
 
 ---
 
-## License
+## PR
 
-This project is available under the MIT License.
