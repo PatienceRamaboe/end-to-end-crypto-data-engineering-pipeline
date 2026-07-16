@@ -1,49 +1,67 @@
-<p align="center">
-  <img src="images/banner.png" alt="End-to-End Data Engineering Pipeline Banner" width="100%">
-</p>
+<div align="center">
 
 # End-to-End Crypto Data Engineering Pipeline
 
+An end-to-end ETL pipeline that extracts, transforms, and loads cryptocurrency market data into PostgreSQL using Python.
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-D71F00?style=for-the-badge)
+![SQL](https://img.shields.io/badge/SQL-336791?style=for-the-badge)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
+
+</div>
+
+---
+
 ## Overview
 
-This project demonstrates the design and implementation of an end-to-end ETL (Extract, Transform, Load) pipeline using Python, PostgreSQL, and SQL.
+This project demonstrates the implementation of an end-to-end **ETL (Extract, Transform, Load)** pipeline using Python, PostgreSQL, and SQL.
 
-The pipeline extracts historical cryptocurrency market data from a Kaggle dataset, performs data cleaning and transformation using Pandas, loads the processed data into PostgreSQL, and executes SQL queries for validation and analysis.
+The pipeline reads historical cryptocurrency market data from a Kaggle dataset, performs data cleaning and transformation with Pandas, loads the processed data into PostgreSQL, and validates the results using SQL queries.
 
-The objective of this project is to demonstrate practical data engineering concepts including data ingestion, transformation, database loading, and analytical querying.
-
----
-
-## Architecture
-
-<p align="center">
-  <img src="images/architecture.png" alt="Architecture Diagram" width="850">
-</p>
+The goal of this project is to demonstrate practical data engineering skills including data ingestion, transformation, relational database loading, and SQL analysis.
 
 ---
 
-## Technology Stack
+## Features
+
+- Extract cryptocurrency data from a CSV dataset
+- Validate dataset availability
+- Clean and transform raw data
+- Remove duplicate records
+- Handle missing values
+- Convert data types
+- Load processed data into PostgreSQL
+- Execute SQL queries for validation and analysis
+- Logging and basic error handling
+- Modular ETL architecture
+
+---
+
+## Tech Stack
 
 | Category | Technology |
-|-----------|------------|
+|----------|------------|
 | Programming Language | Python |
 | Data Processing | Pandas |
 | Database | PostgreSQL |
-| Database Management | pgAdmin 4 |
+| Database Administration | pgAdmin 4 |
 | ORM | SQLAlchemy |
 | Query Language | SQL |
 | Version Control | Git |
 | Repository Hosting | GitHub |
-| Development Environment | VS Code |
+| IDE | Visual Studio Code |
 
 ---
 
 ## Project Structure
 
 ```text
-Data Engineering Pipeline/
-│
-├── Dashboard/
+end-to-end-crypto-data-engineering-pipeline/
 │
 ├── Data/
 │   ├── Raw_Data.csv
@@ -58,12 +76,10 @@ Data Engineering Pipeline/
 │   ├── create_tables.sql
 │   └── analysis.sql
 │
-├── images/
-│   ├── banner.png
-│   └── architecture.png
+├── Dashboard/
 │
-├── requirements.txt
 ├── README.md
+├── Requirements.txt
 └── .gitignore
 ```
 
@@ -71,31 +87,37 @@ Data Engineering Pipeline/
 
 ## ETL Workflow
 
-### Extract
-
-- Load cryptocurrency historical market data from a CSV dataset.
-- Validate dataset availability.
-- Inspect the dataset structure.
-
-### Transform
-
-- Remove duplicate records.
-- Handle missing values.
-- Convert the `date` column to the appropriate data type.
-- Save the cleaned dataset.
-
-### Load
-
-- Connect to PostgreSQL using SQLAlchemy.
-- Load the cleaned dataset into PostgreSQL.
-- Verify successful data ingestion.
+```text
+Kaggle Dataset
+       │
+       ▼
+Raw_Data.csv
+       │
+       ▼
+01_extract.py
+       │
+       ▼
+02_transform.py
+       │
+       ▼
+Clean_Data.csv
+       │
+       ▼
+03_load.py
+       │
+       ▼
+PostgreSQL
+       │
+       ▼
+SQL Analysis
+```
 
 ---
 
 ## Database Schema
 
 | Column | Data Type |
-|----------|-----------|
+|---------|-----------|
 | id | SERIAL PRIMARY KEY |
 | date | DATE |
 | price | DECIMAL(18,8) |
@@ -105,24 +127,44 @@ Data Engineering Pipeline/
 
 ---
 
-## SQL Analysis
+## SQL Validation
 
-The following SQL queries were executed to validate and analyze the dataset:
+The following SQL queries were used to validate and analyze the loaded dataset.
 
-- Count total records
-- Retrieve the highest cryptocurrency price
-- Retrieve the lowest cryptocurrency price
-- Calculate the average price
-- Display sample records
-
-Example:
+### Count Total Records
 
 ```sql
-SELECT COUNT(*) FROM crypto_prices;
+SELECT COUNT(*)
+FROM crypto_prices;
+```
 
-SELECT MAX(price) FROM crypto_prices;
+### Highest Cryptocurrency Price
 
-SELECT AVG(price) FROM crypto_prices;
+```sql
+SELECT MAX(price)
+FROM crypto_prices;
+```
+
+### Lowest Cryptocurrency Price
+
+```sql
+SELECT MIN(price)
+FROM crypto_prices;
+```
+
+### Average Cryptocurrency Price
+
+```sql
+SELECT AVG(price)
+FROM crypto_prices;
+```
+
+### Preview Data
+
+```sql
+SELECT *
+FROM crypto_prices
+LIMIT 10;
 ```
 
 ---
@@ -132,13 +174,13 @@ SELECT AVG(price) FROM crypto_prices;
 Clone the repository.
 
 ```bash
-git clone https://github.com/yourusername/end-to-end-crypto-data-pipeline.git
+git clone https://github.com/PatienceRamaboe/end-to-end-crypto-data-engineering-pipeline.git
 ```
 
-Navigate into the project directory.
+Navigate to the project directory.
 
 ```bash
-cd end-to-end-crypto-data-pipeline
+cd end-to-end-crypto-data-engineering-pipeline
 ```
 
 Create a virtual environment.
@@ -149,65 +191,58 @@ python -m venv venv
 
 Activate the virtual environment.
 
-Windows
+### Windows
 
 ```bash
 venv\Scripts\activate
 ```
 
-Install dependencies.
+Install the required packages.
 
 ```bash
-pip install -r requirements.txt
+pip install -r Requirements.txt
 ```
 
 ---
 
 ## Running the Pipeline
 
-Execute the scripts in the following order.
+Execute the ETL pipeline in the following order.
 
 ```bash
-python scripts/01_extract.py
-python scripts/02_transform.py
-python scripts/03_load.py
+python Scripts/01_extract.py
+python Scripts/02_transform.py
+python Scripts/03_load.py
 ```
 
 ---
 
-## Sample Output
+## Project Outcomes
 
-After running the pipeline:
+This project demonstrates the ability to:
 
-- Raw dataset successfully extracted.
-- Data cleaned and transformed.
-- Clean dataset generated.
-- Data loaded into PostgreSQL.
-- SQL validation completed successfully.
-
----
-
-## Skills Demonstrated
-
-- ETL Pipeline Development
-- Data Cleaning and Transformation
-- PostgreSQL Database Design
-- SQL Querying
-- Python Programming
-- Data Validation
-- Logging and Error Handling
-- Git Version Control
-- Project Documentation
+- Build an end-to-end ETL pipeline
+- Extract data from external sources
+- Transform and clean datasets using Pandas
+- Design and populate PostgreSQL tables
+- Perform SQL-based validation and analysis
+- Organize a Python project using modular scripts
+- Use Git and GitHub for version control
 
 ---
 
 ## Future Improvements
 
-- Automate the pipeline using Apache Airflow
-- Containerize the application with Docker
-- Integrate AWS S3 for data storage
-- Schedule automated pipeline execution
-- Develop an interactive dashboard using Streamlit or Power BI
+Planned enhancements include:
+
+- Apache Airflow orchestration
+- Docker containerization
+- AWS S3 integration
+- Automated pipeline scheduling
+- Streamlit dashboard
+- Power BI dashboard
+- Unit testing
+- CI/CD with GitHub Actions
 
 ---
 
@@ -217,6 +252,14 @@ After running the pipeline:
 
 Aspiring Data Engineer
 
-LinkedIn: *(Add your LinkedIn URL)*
+**GitHub**  
+https://github.com/PatienceRamaboe
 
-GitHub: *(Add your GitHub URL)*
+**LinkedIn**  
+_Add your LinkedIn profile URL_
+
+---
+
+## License
+
+This project is available under the MIT License.
